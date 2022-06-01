@@ -190,6 +190,8 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.scrollDirection = (self.direct == CHBannerViewDirectionVertical ? UICollectionViewScrollDirectionVertical : UICollectionViewScrollDirectionHorizontal);
+        flowLayout.minimumLineSpacing = 0;
+        flowLayout.minimumInteritemSpacing = 0;
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         _collectionView.backgroundColor = UIColor.redColor;
