@@ -196,6 +196,8 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[CHBannerViewCell class] forCellWithReuseIdentifier:@"CHBannerViewCell"];
     }
     return _collectionView;
