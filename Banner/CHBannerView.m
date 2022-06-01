@@ -184,6 +184,40 @@
     return collectionView.frame.size;
 }
 
+//MARK: - Set
+-(void)setDataSource:(NSMutableArray<CHBannerModel *> *)dataSource {
+    _dataSource = dataSource;
+    
+    if (NSThread.currentThread) {
+        self.pageControl.numberOfPages = dataSource.count;
+        self.pageControl.currentPage = 0;
+        [self.collectionView reloadData];
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pageControl.numberOfPages = dataSource.count;
+            self.pageControl.currentPage = 0;
+            [self.collectionView reloadData];
+        });
+    }
+}
+
+-(void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor {
+    _pageIndicatorTintColor = pageIndicatorTintColor;
+    self.pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
+}
+
+-(void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor {
+    _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
+    self.pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
+}
+
+-(void)setTintColor:(UIColor *)color {
+    _tintColor = color;
+    self.backgroundColor = color;
+    self.collectionView.backgroundColor = color;
+}
+
+
 
 //MARK: - Init
 -(UICollectionView *)collectionView {
@@ -217,31 +251,6 @@
 }
 
 
--(void)setDataSource:(NSMutableArray<CHBannerModel *> *)dataSource {
-    _dataSource = dataSource;
-    
-    if (NSThread.currentThread) {
-        self.pageControl.numberOfPages = dataSource.count;
-        self.pageControl.currentPage = 0;
-        [self.collectionView reloadData];
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.pageControl.numberOfPages = dataSource.count;
-            self.pageControl.currentPage = 0;
-            [self.collectionView reloadData];
-        });
-    }
-}
-
--(void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor {
-    _pageIndicatorTintColor = pageIndicatorTintColor;
-    self.pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
-}
-
--(void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor {
-    _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-    self.pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-}
 
 - (dispatch_source_t)timer {
     if (!_timer) {

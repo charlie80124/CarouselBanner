@@ -24,8 +24,14 @@ typedef NS_ENUM(NSUInteger, CHBannerViewDirection){
 -(instancetype)initWithDirect:(CHBannerViewDirection) direction timerInterval:(CGFloat)timerInterval;
 @property (nonatomic, strong) NSMutableArray<CHBannerModel*>* dataSource;
 @property (nonatomic, weak, nullable) id<CHBannerViewDelegate>delegate;
+
+@property (nonatomic, strong) UIColor* tintColor;
+
+//PageControl
 @property (nonatomic, strong) UIColor* currentPageIndicatorTintColor;
 @property (nonatomic, strong) UIColor* pageIndicatorTintColor;
+@property (nonatomic, assign) BOOL hiddenPageControl;
+
 -(void) start;
 -(void) stop;
 -(void) invalidate; // need call in dealloc
